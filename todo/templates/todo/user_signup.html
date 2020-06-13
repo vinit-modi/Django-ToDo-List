@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Sign Up</title>
 </head>
 <body>
     <h1>Signup</h1>
+    <h2>{{ error }}</h2>
     <form method="POST">
         {{ form.as_p }}
         {% csrf_token %}
