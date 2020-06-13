@@ -3,7 +3,10 @@
 
 <h2>Logged in as {{ user.username }}</h2>
 
-<a href="#">Logout</a>
+<form action="{% url 'user_logout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
 
 {% else %}
 
