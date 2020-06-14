@@ -44,4 +44,3 @@ def user_logout(request):
 
 def currenttodos(request):
     return render(request,'todo/currenttodos.html')
-
