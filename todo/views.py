@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from todo.forms import TodoForm
 
 # Create your views here.
 
@@ -25,6 +26,7 @@ def user_signup(request):
         else:
              return render(request,'todo/user_signup.html',{'form':UserCreationForm(), 'error':'Passwords didn\'t match'})
 
+
 def user_login(request):
     if request.method == 'GET':
         return render(request,'todo/user_login.html',{'form':AuthenticationForm()})
@@ -41,6 +43,19 @@ def user_logout(request):
     if request.method == "POST":
         logout(request)
         return redirect('home')
+
+def createtodo(request):
+    if request.method == 'GET':
+        return render(request,'todo/createtodo.html',{'form':TodoForm()})
+    else:
+        try:
+            form = TodoForm(request.POST)
+            newtodo = form.save(commit=False)
+            newtodo.user = request.user
+            newtodo.save()
+            return redirect('currenttodos')
+        except ValueError:
+            return render(request,'todo/createtodo.html',{'form':TodoForm(), 'error':'Too many data input. Please try again.'})
 
 def currenttodos(request):
     return render(request,'todo/currenttodos.html')
