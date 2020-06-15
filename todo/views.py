@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from todo.forms import TodoForm
+from todo.models import Todo
 
 # Create your views here.
 
@@ -58,4 +59,5 @@ def createtodo(request):
             return render(request,'todo/createtodo.html',{'form':TodoForm(), 'error':'Too many data input. Please try again.'})
 
 def currenttodos(request):
-    return render(request,'todo/currenttodos.html')
+    todos = Todo.objects.filter(user=request.user, completed__isnull=True)
+    return render(request,'todo/currenttodos.html',{'todos':todos})

@@ -1,3 +1,4 @@
+{% extends 'todo/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,22 @@
     <title>Current ToDo</title>
 </head>
 <body>
-    {% extends 'todo/base.html' %}
-
     {% block content %}
     <h2>Current</h2>
+    <ul>   
+        {% for todo in todos %}  
+        <li>
+            {% if todo.important %}
+                <b>{{ todo.title }}</b>
+            {% else %}
+                {{ todo.title }}
+            {% endif %}
+            {% if todo.memo %}
+                 - {{ todo.memo }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
     {% endblock content %}
-
 </body>
 </html>
