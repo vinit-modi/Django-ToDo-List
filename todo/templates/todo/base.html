@@ -1,7 +1,21 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    
+</body>
+</html>
 {% if user.is_authenticated %}
 
 <h2>Logged in as {{ user.username }}</h2>
+
+<a href="{% url 'createtodo' %}">Create</a>
+<a href="{% url 'currenttodos' %}">Current</a>
+<a href="{% url 'completedtodos' %}">Completed</a>
 
 <form action="{% url 'user_logout' %}" method="POST">
     {% csrf_token %}

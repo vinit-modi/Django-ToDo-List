@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from todo.forms import TodoForm
 from todo.models import Todo
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -40,12 +41,13 @@ def user_login(request):
             login(request, user)
             return redirect('currenttodos')
 
-
+@login_required
 def user_logout(request):
     if request.method == "POST":
         logout(request)
         return redirect('home')
 
+@login_required
 def createtodo(request):
     if request.method == 'GET':
         return render(request,'todo/createtodo.html',{'form':TodoForm()})
@@ -59,10 +61,12 @@ def createtodo(request):
         except ValueError:
             return render(request,'todo/createtodo.html',{'form':TodoForm(), 'error':'Too many data input. Please try again.'})
 
+@login_required
 def currenttodos(request):
     todos = Todo.objects.filter(user=request.user, completed__isnull=True)
     return render(request,'todo/currenttodos.html',{'todos':todos})
 
+@login_required
 def viewtodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'GET':
@@ -76,6 +80,7 @@ def viewtodo(request, todo_pk):
         except ValueError:
             return render(request,'todo/viewtodo.html',{'todo':todo, 'form':form, 'error':'Too many data input. Please try again.'})
 
+@login_required
 def completetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'POST':
@@ -83,8 +88,14 @@ def completetodo(request, todo_pk):
         todo.save()
         return redirect('currenttodos')
 
+@login_required
 def deletetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'POST':
         todo.delete()
         return redirect('currenttodos')
+
+@login_required
+def completedtodos(request):
+    todos = Todo.objects.filter(user=request.user, completed__isnull=False).order_by('-completed')
+    return render(request,'todo/completedtodos.html',{'todos':todos})
