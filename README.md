@@ -25,26 +25,20 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [Contact](#contact)
 
 ## About The Project
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-
-Here's why:
-* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+• A website where a user can sign up for an account, and fully manage a to-do list with the ability to create, edit, and delete. In this project, I worked on the authentication system (sign up, log in, logout), Establish model relationships with CRUD operations. <br />
+• Worked with authentication system where user can create a new account and login into it. <br />
+• As sign up functionality added, only authenticated users can see their tasks. <br />
+• User can select the important tag while creating a todo. So that that todo will stand out from other todos. <br />
+• User can see the completed todo and current todos.
 
 ### Built With
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+This application is build with Django.
 * [Bootstrap](https://getbootstrap.com)
 * [Django](https://www.djangoproject.com/)
 
@@ -78,11 +72,6 @@ git clone https://github.com/vinit-modi/Django-ToDo-List
 ```sh
 python manage.py runserver
 ```
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
 
 <!-- ROADMAP -->
 ## Roadmap
